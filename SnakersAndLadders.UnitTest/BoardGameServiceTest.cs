@@ -16,7 +16,6 @@ namespace SnakersAndLadders.UnitTest
             _boardGameService = new BoardGameService();
         }
 
-
         /// <summary>
         /// US1/UAT1
         /// Given the game is started
@@ -46,7 +45,7 @@ namespace SnakersAndLadders.UnitTest
         /// Given the token is on square 1
         /// When the token is moved 3 spaces
         /// Then the token is on square 4
-        /// </summary>
+        /// <summary>
         [Fact]
         public void TestMoveToken3Spaces()
         {
@@ -67,5 +66,32 @@ namespace SnakersAndLadders.UnitTest
 
         }
 
+        /// <summary>
+        /// US1/UAT3
+        /// Given the token is on square 1
+        /// When the token is moved 3 spaces
+        /// And then it is moved 4 spaces
+        /// Then the token is on square 8
+        /// <summary>
+        [Fact]
+        public void TestMoveToken2Times()
+        {
+            const int NumberOfPlayers = 2;
+            const int PlayerToMove = 1;
+            const int FirstPositionsToMove = 3;
+            const int SecondPositionsToMove = 4;
+            const int ExpectedResult = 8;
+
+            _boardGameService.Start(NumberOfPlayers);
+
+            Player PlayerOne = _boardGameService.GetPlayer(PlayerToMove);
+
+            PlayerOne = _boardGameService.MoveTokenPosition(PlayerOne, FirstPositionsToMove);
+            PlayerOne = _boardGameService.MoveTokenPosition(PlayerOne, SecondPositionsToMove);
+
+            var positionOfPlayerOne = _boardGameService.GetTokenPositionOfPlayer(PlayerOne);
+
+            positionOfPlayerOne.Should().Be(ExpectedResult);
+        }
     }
 }
