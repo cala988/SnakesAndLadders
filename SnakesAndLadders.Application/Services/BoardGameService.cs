@@ -51,5 +51,15 @@ namespace SnakesAndLadders.Application.Services
         {
             _game.Players.Add(new Player(i, new Token(StartingPosition)));
         }
+
+        public Player MoveTokenPosition(Player player, int position)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Player GetPlayer(int playerNumber)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
