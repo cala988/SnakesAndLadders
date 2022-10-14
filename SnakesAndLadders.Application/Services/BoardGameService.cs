@@ -5,7 +5,7 @@ namespace SnakesAndLadders.Application.Services
 {
     public class BoardGameService : IBoardGameService
     {
-        private const int StartingProsition = 1;
+        private const int StartingPosition = 1;
         private Game _game;
 
         public BoardGameService()
@@ -21,21 +21,22 @@ namespace SnakesAndLadders.Application.Services
         public void Start(int numberOfPlayers)
         {
             ThrowExceptionIfGameIsStarted();
+            AddStartingPlayers(numberOfPlayers);
+        }
 
+        private void AddStartingPlayers(int numberOfPlayers)
+        {
             _game.Players = new List<Player>();
 
             for (int i = 1; i <= numberOfPlayers; i++)
             {
-                _game.Players.Add(
-                    new Player() { 
-                        Number = i,
-                        Token = new Token()
-                        {
-                            Position = StartingProsition,
-                        }
-                    }
-                );
+                AddStartingPlayer(i);
             }
+        }
+
+        public int GetTokenPositionOfPlayer(Player player)
+        {
+            return _game.Players.Where(x => x.Number == player.Number).Select(x=>x.Token.Position).FirstOrDefault();
         }
 
         private void ThrowExceptionIfGameIsStarted()
@@ -44,6 +45,11 @@ namespace SnakesAndLadders.Application.Services
             {
                 throw new ArgumentException("The game has already been started, please stop the game before restarting it");
             }
+        }
+
+        private void AddStartingPlayer(int i)
+        {
+            _game.Players.Add(new Player(i, new Token(StartingPosition)));
         }
     }
 }

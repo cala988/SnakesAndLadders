@@ -33,10 +33,12 @@ namespace SnakersAndLadders.UnitTest
 
             List<Player> players = _boardGameService.GetPlayers();
 
-            _ = players.Select(x =>
+            foreach(Player player in players)
             {
-                return x.Token.Position.Should().Be(ExpectedResult);
-            });
+                var position = _boardGameService.GetTokenPositionOfPlayer(player);
+
+                position.Should().Be(ExpectedResult);
+            }
         }
     }
 }

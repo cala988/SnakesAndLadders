@@ -7,5 +7,7 @@ namespace SnakesAndLadders.Application.Interfaces
         public void Start(int numberOfPlayers);
 
         public List<Player> GetPlayers();
+
+        int GetTokenPositionOfPlayer(Player playerNumber);
     }
 }
