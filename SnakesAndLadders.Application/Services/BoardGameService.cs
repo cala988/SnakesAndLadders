@@ -39,6 +39,27 @@ namespace SnakesAndLadders.Application.Services
             return _game.Players.Where(x => x.Number == player.Number).Select(x=>x.Token.Position).FirstOrDefault();
         }
 
+        public Player MoveTokenPosition(Player player, int position)
+        {
+            player.Token.Position += position;
+            return player;
+        }
+
+        public Player GetPlayer(int playerNumber)
+        {
+            ThrowExceptionIfGameIsStopped();
+
+            return _game.Players.FirstOrDefault(x => x.Number == playerNumber);
+        }
+
+        private void ThrowExceptionIfGameIsStopped()
+        {
+            if (_game.Players == null || _game.Players.Count == 0)
+            {
+                throw new ArgumentException("The game is stopped, please start the game before calling other operations");
+            }
+        }
+
         private void ThrowExceptionIfGameIsStarted()
         {
             if (_game.Players != null && _game.Players?.Count > 0)
@@ -50,16 +71,6 @@ namespace SnakesAndLadders.Application.Services
         private void AddStartingPlayer(int i)
         {
             _game.Players.Add(new Player(i, new Token(StartingPosition)));
-        }
-
-        public Player MoveTokenPosition(Player player, int position)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Player GetPlayer(int playerNumber)
-        {
-            throw new NotImplementedException();
         }
     }
 }
