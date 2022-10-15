@@ -58,7 +58,7 @@ namespace SnakersAndLadders.UnitTest
 
             Player PlayerOne = _boardGameService.GetPlayer(PlayerToMove);
 
-            PlayerOne = _boardGameService.MoveTokenPosition(PlayerOne, PositionsToMove);
+            PlayerOne = _boardGameService.MovePlayerTokenPosition(PlayerOne, PositionsToMove);
 
             var positionOfPlayerOne = _boardGameService.GetTokenPositionOfPlayer(PlayerOne);
 
@@ -86,8 +86,8 @@ namespace SnakersAndLadders.UnitTest
 
             Player PlayerOne = _boardGameService.GetPlayer(PlayerToMove);
 
-            PlayerOne = _boardGameService.MoveTokenPosition(PlayerOne, FirstPositionsToMove);
-            PlayerOne = _boardGameService.MoveTokenPosition(PlayerOne, SecondPositionsToMove);
+            PlayerOne = _boardGameService.MovePlayerTokenPosition(PlayerOne, FirstPositionsToMove);
+            PlayerOne = _boardGameService.MovePlayerTokenPosition(PlayerOne, SecondPositionsToMove);
 
             var positionOfPlayerOne = _boardGameService.GetTokenPositionOfPlayer(PlayerOne);
 
@@ -114,7 +114,7 @@ namespace SnakersAndLadders.UnitTest
             Player PlayerOne = _boardGameService.GetPlayer(PlayerToMove);
             PlayerOne.Token.Position = ActualSquare;
 
-            PlayerOne = _boardGameService.MoveTokenPosition(PlayerOne, 3);
+            PlayerOne = _boardGameService.MovePlayerTokenPosition(PlayerOne, 3);
 
             bool playerOneWin = _boardGameService.CheckIfThePlayerWonTheGame(PlayerOne);
 

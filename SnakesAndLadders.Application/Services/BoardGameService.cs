@@ -39,7 +39,7 @@ namespace SnakesAndLadders.Application.Services
             return _game.Players.Where(x => x.Number == player.Number).Select(x=>x.Token.Position).FirstOrDefault();
         }
 
-        public Player MoveTokenPosition(Player player, int position)
+        public Player MovePlayerTokenPosition(Player player, int position)
         {
             player.Token.Position += position;
             return player;

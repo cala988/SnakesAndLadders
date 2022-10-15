@@ -10,7 +10,7 @@ namespace SnakesAndLadders.Application.Interfaces
 
         public int GetTokenPositionOfPlayer(Player player);
 
-        public Player MoveTokenPosition(Player player, int position);
+        public Player MovePlayerTokenPosition(Player player, int position);
 
         public Player GetPlayer(int playerNumber);
 
