@@ -10,6 +10,15 @@
         {
             return Players.First(x => x.Number == playerNumber);
         }
-        
+
+        public Player MovePlayerTokenPosition(int playerNumber, int position)
+        {
+            var player  = GetPlayer(playerNumber);
+
+            player.MoveTokenPosition(position);
+
+            return player;
+        }
+
     }
 }

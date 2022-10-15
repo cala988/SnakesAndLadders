@@ -41,15 +41,14 @@ namespace SnakesAndLadders.Application.Services
 
         public Player MovePlayerTokenPosition(Player player, int position)
         {
-            player.Token.Position += position;
-            return player;
+            return _game.MovePlayerTokenPosition(player.Number, position);
         }
 
         public Player GetPlayer(int playerNumber)
         {
             ThrowExceptionIfGameIsStopped();
 
-            return _game.Players.First(x => x.Number == playerNumber);
+            return _game.GetPlayer(playerNumber);
         }
 
         public bool CheckIfThePlayerWonTheGame(Player player)
