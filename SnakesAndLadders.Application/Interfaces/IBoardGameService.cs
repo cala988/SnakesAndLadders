@@ -13,5 +13,7 @@ namespace SnakesAndLadders.Application.Interfaces
         Player MoveTokenPosition(Player player, int position);
 
         Player GetPlayer(int playerNumber);
+
+        public bool CheckIfThePlayerWonTheGame(Player player);
     }
 }

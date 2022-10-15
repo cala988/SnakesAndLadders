@@ -3,6 +3,8 @@ using SnakesAndLadders.Application.Entitites;
 using SnakesAndLadders.Application.Services;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Runtime.InteropServices;
 using Xunit;
 
 namespace SnakersAndLadders.UnitTest
@@ -92,6 +94,34 @@ namespace SnakersAndLadders.UnitTest
             var positionOfPlayerOne = _boardGameService.GetTokenPositionOfPlayer(PlayerOne);
 
             positionOfPlayerOne.Should().Be(ExpectedResult);
+        }
+
+
+        /// <summary>
+        /// US2/UAT1
+        /// Given the token is on square 97
+        /// When the token is moved 3 spaces
+        /// Then the token is on square 100
+        /// And the player has won the game
+        /// </summary>
+        /// <summary>
+        [Fact]
+        public void TestPlayerWinTheGame()
+        {
+            const int NumberOfPlayers = 2;
+            const int PlayerToMove = 1;
+            const int ActualSquare = 97;
+
+            _boardGameService.Start(NumberOfPlayers);
+            Player PlayerOne = _boardGameService.GetPlayer(PlayerToMove);
+            PlayerOne.Token.Position = ActualSquare;
+
+            PlayerOne = _boardGameService.MoveTokenPosition(PlayerOne, 3);
+
+            bool playerOneWin = _boardGameService.CheckIfThePlayerWonTheGame(PlayerOne);
+
+            playerOneWin.Should().BeTrue();
+
         }
     }
 }

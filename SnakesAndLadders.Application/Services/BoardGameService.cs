@@ -52,6 +52,11 @@ namespace SnakesAndLadders.Application.Services
             return _game.Players.FirstOrDefault(x => x.Number == playerNumber);
         }
 
+        public bool CheckIfThePlayerWonTheGame(Player player)
+        {
+            throw new NotImplementedException();
+        }
+
         private void ThrowExceptionIfGameIsStopped()
         {
             if (_game.Players == null || _game.Players.Count == 0)
