@@ -61,6 +61,11 @@ namespace SnakesAndLadders.Application.Services
             return player.Token.Position == _game.Board.GoalSquare;
         }
 
+        public int RollDie()
+        {
+            throw new NotImplementedException();
+        }
+
         private void ThrowExceptionIfGameIsStopped()
         {
             if (_game.Players == null || _game.Players.Count == 0)

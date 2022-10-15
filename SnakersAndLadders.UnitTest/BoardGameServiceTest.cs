@@ -2,6 +2,7 @@ using FluentAssertions;
 using SnakesAndLadders.Application.Entitites;
 using SnakesAndLadders.Application.Interfaces;
 using SnakesAndLadders.Application.Services;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Numerics;
 using Xunit;
@@ -150,6 +151,26 @@ namespace SnakersAndLadders.UnitTest
             bool playerOneWin = _boardGameService.CheckIfThePlayerWonTheGame(PlayerOne);
 
             playerOneWin.Should().BeFalse();
+        }
+
+        /// <summary>
+        /// US3/UAT1
+        /// Given the game is started
+        /// When the player rolls a die
+        /// Then the result should be between 1-6 inclusiveGiven the game is started
+        /// <summary>
+        [Fact]
+        public void TestRollDieBetweenTwoNumbers()
+        {
+            const int NumberOfPlayers = 2;
+            const int MinimunNumber = 1;
+            const int MaximunNumber = 0;
+
+            _boardGameService.Start(NumberOfPlayers);
+
+            int number = _boardGameService.RollDie();
+
+            number.Should().BeInRange(MinimunNumber, MaximunNumber);
         }
 
     }

@@ -15,5 +15,7 @@ namespace SnakesAndLadders.Application.Interfaces
         public Player GetPlayer(int playerNumber);
 
         public bool CheckIfThePlayerWonTheGame(Player player);
+
+        public int RollDie();
     }
 }

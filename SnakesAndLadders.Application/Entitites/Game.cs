@@ -6,6 +6,8 @@
 
         public Board Board { get; set; } = new Board(100);
 
+        public Die Die { get; set; }
+
         public Player GetPlayer(int playerNumber)
         {
             return Players.First(x => x.Number == playerNumber);
