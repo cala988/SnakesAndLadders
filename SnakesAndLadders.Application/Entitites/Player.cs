@@ -11,5 +11,10 @@
         public int Number { get; set; }
 
         public Token Token { get; set; }
+
+        public int GetTokenPosition()
+        {
+            return Token.Position;
+        }
     }
 }
