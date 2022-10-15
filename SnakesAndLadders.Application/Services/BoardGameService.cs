@@ -49,7 +49,7 @@ namespace SnakesAndLadders.Application.Services
         {
             ThrowExceptionIfGameIsStopped();
 
-            return _game.Players.FirstOrDefault(x => x.Number == playerNumber);
+            return _game.Players.First(x => x.Number == playerNumber);
         }
 
         public bool CheckIfThePlayerWonTheGame(Player player)
