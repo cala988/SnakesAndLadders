@@ -3,6 +3,7 @@ using SnakesAndLadders.Application.Entitites;
 using SnakesAndLadders.Application.Interfaces;
 using SnakesAndLadders.Application.Services;
 using System.Collections.Generic;
+using System.Numerics;
 using Xunit;
 
 namespace SnakersAndLadders.UnitTest
@@ -109,17 +110,20 @@ namespace SnakersAndLadders.UnitTest
             const int NumberOfPlayers = 2;
             const int PlayerToMove = 1;
             const int ActualSquare = 97;
+            const int SquaresToMove = 3;
 
             _boardGameService.Start(NumberOfPlayers);
             Player PlayerOne = _boardGameService.GetPlayer(PlayerToMove);
             PlayerOne.Token.Position = ActualSquare;
 
-            PlayerOne = _boardGameService.MovePlayerTokenPosition(PlayerOne, 3);
+            PlayerOne = _boardGameService.MovePlayerTokenPosition(PlayerOne, SquaresToMove);
 
             bool playerOneWin = _boardGameService.CheckIfThePlayerWonTheGame(PlayerOne);
 
             playerOneWin.Should().BeTrue();
-
         }
+
+        
+
     }
 }
