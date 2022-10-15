@@ -8,11 +8,11 @@ namespace SnakesAndLadders.Application.Interfaces
 
         public List<Player> GetPlayers();
 
-        int GetTokenPositionOfPlayer(Player player);
+        public int GetTokenPositionOfPlayer(Player player);
 
-        Player MoveTokenPosition(Player player, int position);
+        public Player MoveTokenPosition(Player player, int position);
 
-        Player GetPlayer(int playerNumber);
+        public Player GetPlayer(int playerNumber);
 
         public bool CheckIfThePlayerWonTheGame(Player player);
     }

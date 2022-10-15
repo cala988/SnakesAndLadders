@@ -1,17 +1,15 @@
 using FluentAssertions;
 using SnakesAndLadders.Application.Entitites;
+using SnakesAndLadders.Application.Interfaces;
 using SnakesAndLadders.Application.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.InteropServices;
 using Xunit;
 
 namespace SnakersAndLadders.UnitTest
 {
     public class BoardGameServiceTest
     {
-        private readonly BoardGameService _boardGameService;
+        private readonly IBoardGameService _boardGameService;
 
         public BoardGameServiceTest()
         {
