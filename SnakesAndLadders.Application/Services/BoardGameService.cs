@@ -41,6 +41,11 @@ namespace SnakesAndLadders.Application.Services
 
         public Player MovePlayerTokenPosition(Player player, int position)
         {
+            if(_game.CheckIfIsValidMovement(player, position))
+            {
+                return _game.GetPlayer(player.Number);
+            }
+            
             return _game.MovePlayerTokenPosition(player.Number, position);
         }
 

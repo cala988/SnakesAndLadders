@@ -20,5 +20,12 @@
             return player;
         }
 
+        public bool CheckIfIsValidMovement(Player player, int position)
+        {
+            var futurePosition = player.GetTokenPosition() + position;
+
+            return futurePosition > Board.GoalSquare;
+        }
+
     }
 }
