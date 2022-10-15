@@ -164,13 +164,15 @@ namespace SnakersAndLadders.UnitTest
         {
             const int NumberOfPlayers = 2;
             const int MinimunNumber = 1;
-            const int MaximunNumber = 0;
+            const int MaximunNumber = 6;
 
             _boardGameService.Start(NumberOfPlayers);
 
-            int number = _boardGameService.RollDie();
-
-            number.Should().BeInRange(MinimunNumber, MaximunNumber);
+            for (int i = 0; i < 100; i++)
+            {
+                int number = _boardGameService.RollDie();
+                number.Should().BeInRange(MinimunNumber, MaximunNumber);
+            }
         }
 
     }

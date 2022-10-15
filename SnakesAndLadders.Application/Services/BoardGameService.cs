@@ -63,7 +63,7 @@ namespace SnakesAndLadders.Application.Services
 
         public int RollDie()
         {
-            throw new NotImplementedException();
+            return _game.RollDie();
         }
 
         private void ThrowExceptionIfGameIsStopped()
