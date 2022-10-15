@@ -54,7 +54,7 @@ namespace SnakesAndLadders.Application.Services
 
         public bool CheckIfThePlayerWonTheGame(Player player)
         {
-            throw new NotImplementedException();
+            return player.Token.Position == _game.Board.GoalSquare;
         }
 
         private void ThrowExceptionIfGameIsStopped()
