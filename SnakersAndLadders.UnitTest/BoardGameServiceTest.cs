@@ -123,7 +123,32 @@ namespace SnakersAndLadders.UnitTest
             playerOneWin.Should().BeTrue();
         }
 
-        
+
+        /// <summary>
+        /// US2/UAT2
+        /// Given the token is on square 97
+        /// When the token is moved 4 spaces
+        /// Then the token is on square 97
+        /// And the player has not won the game
+        /// <summary>
+        [Fact]
+        public void TestPlayerNotWinTheGame()
+        {
+            const int NumberOfPlayers = 2;
+            const int PlayerToMove = 1;
+            const int ActualSquare = 97;
+            const int SquaresToMove = 4;
+
+            _boardGameService.Start(NumberOfPlayers);
+            Player PlayerOne = _boardGameService.GetPlayer(PlayerToMove);
+            PlayerOne.Token.Position = ActualSquare;
+
+            PlayerOne = _boardGameService.MovePlayerTokenPosition(PlayerOne, SquaresToMove);
+
+            bool playerOneWin = _boardGameService.CheckIfThePlayerWonTheGame(PlayerOne);
+
+            playerOneWin.Should().BeFalse();
+        }
 
     }
 }
