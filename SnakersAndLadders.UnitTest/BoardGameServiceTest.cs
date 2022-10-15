@@ -132,18 +132,20 @@ namespace SnakersAndLadders.UnitTest
         /// And the player has not won the game
         /// <summary>
         [Fact]
-        public void TestPlayerNotWinTheGame()
+        public void TestPlayerIsInSamePositionAndNotWinTheGame()
         {
             const int NumberOfPlayers = 2;
             const int PlayerToMove = 1;
-            const int ActualSquare = 97;
+            const int InitialSquarePosition = 97;
             const int SquaresToMove = 4;
 
             _boardGameService.Start(NumberOfPlayers);
             Player PlayerOne = _boardGameService.GetPlayer(PlayerToMove);
-            PlayerOne.Token.Position = ActualSquare;
+            PlayerOne.Token.Position = InitialSquarePosition;
 
             PlayerOne = _boardGameService.MovePlayerTokenPosition(PlayerOne, SquaresToMove);
+
+            PlayerOne.Token.Position.Should().Be(InitialSquarePosition);
 
             bool playerOneWin = _boardGameService.CheckIfThePlayerWonTheGame(PlayerOne);
 
