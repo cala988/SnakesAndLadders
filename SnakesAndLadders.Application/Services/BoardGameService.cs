@@ -66,6 +66,11 @@ namespace SnakesAndLadders.Application.Services
             return _game.RollDie();
         }
 
+        public void PlayGameTurn(Player player)
+        {
+            throw new NotImplementedException();
+        }
+
         private void ThrowExceptionIfGameIsStopped()
         {
             if (_game.Players == null || _game.Players.Count == 0)

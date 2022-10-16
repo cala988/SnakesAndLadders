@@ -1,4 +1,6 @@
 using FluentAssertions;
+using Moq;
+using Newtonsoft.Json.Linq;
 using SnakesAndLadders.Application.Entitites;
 using SnakesAndLadders.Application.Interfaces;
 using SnakesAndLadders.Application.Services;
@@ -173,6 +175,34 @@ namespace SnakersAndLadders.UnitTest
                 int number = _boardGameService.RollDie();
                 number.Should().BeInRange(MinimunNumber, MaximunNumber);
             }
+        }
+
+        /// <summary>
+        /// US3/UAT2
+        /// Given the player rolls a 4
+        /// When they move their token
+        /// Then the token should move 4 spaces
+        /// </summary>
+        [Fact]
+        public void TestRollDieTwoMovements()
+        {
+            const int NumberOfPlayers = 2;
+            const int rollNumer = 4;
+            const int ExpectedResult = 5;
+
+            var mockGameService = new Mock<BoardGameService>().As<IBoardGameService>();
+            mockGameService.CallBase = true;
+            mockGameService.Setup(x => x.RollDie()).Returns(rollNumer);
+            var gameService = mockGameService.Object;
+            
+            gameService.Start(NumberOfPlayers);
+            var playerOne = gameService.GetPlayer(1);
+            
+            gameService.PlayGameTurn(playerOne);
+
+            var player = gameService.GetPlayer(1);
+
+            player.GetTokenPosition().Should().Be(ExpectedResult);
         }
 
     }
