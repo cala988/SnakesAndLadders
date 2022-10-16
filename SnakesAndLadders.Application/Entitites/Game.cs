@@ -6,8 +6,6 @@
 
         public Board Board { get; set; } = new Board(100);
 
-        public Die Die { get; set; } = new Die(1, 6);
-
         public Player GetPlayer(int playerNumber)
         {
             return Players.First(x => x.Number == playerNumber);
@@ -27,11 +25,6 @@
             var futurePosition = player.GetTokenPosition() + position;
 
             return futurePosition > Board.GoalSquare;
-        }
-
-        public int RollDie()
-        {
-            return Die.Roll();
         }
 
     }

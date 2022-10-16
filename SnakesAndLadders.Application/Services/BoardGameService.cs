@@ -6,10 +6,12 @@ namespace SnakesAndLadders.Application.Services
     public class BoardGameService : IBoardGameService
     {
         private const int StartingPosition = 1;
-        private Game _game;
+        private readonly IDieService _dieService;
+        private readonly Game _game;
 
-        public BoardGameService()
+        public BoardGameService(IDieService dieService)
         {
+            _dieService = dieService;
             _game = new Game();
         }
 
@@ -63,12 +65,13 @@ namespace SnakesAndLadders.Application.Services
 
         public int RollDie()
         {
-            return _game.RollDie();
+            return _dieService.Roll();
         }
 
         public void PlayGameTurn(Player player)
         {
-            throw new NotImplementedException();
+            var number = _dieService.Roll();
+            player.MoveTokenPosition(number);
         }
 
         private void ThrowExceptionIfGameIsStopped()

@@ -17,7 +17,7 @@ namespace SnakersAndLadders.UnitTest
 
         public BoardGameServiceTest()
         {
-            _boardGameService = new BoardGameService();
+            _boardGameService = new BoardGameService(new DieService());
         }
 
         /// <summary>
@@ -189,18 +189,18 @@ namespace SnakersAndLadders.UnitTest
             const int NumberOfPlayers = 2;
             const int rollNumer = 4;
             const int ExpectedResult = 5;
+            const int PlayerOne = 1;
 
-            var mockGameService = new Mock<BoardGameService>().As<IBoardGameService>();
-            mockGameService.CallBase = true;
-            mockGameService.Setup(x => x.RollDie()).Returns(rollNumer);
-            var gameService = mockGameService.Object;
+            var mockDieService = new Mock<IDieService>();
+            mockDieService.Setup(x => x.Roll()).Returns(rollNumer);
+            var gameService = new BoardGameService(mockDieService.Object);
             
             gameService.Start(NumberOfPlayers);
-            var playerOne = gameService.GetPlayer(1);
-            
+            var playerOne = gameService.GetPlayer(PlayerOne);
+
             gameService.PlayGameTurn(playerOne);
 
-            var player = gameService.GetPlayer(1);
+            var player = gameService.GetPlayer(PlayerOne);
 
             player.GetTokenPosition().Should().Be(ExpectedResult);
         }
