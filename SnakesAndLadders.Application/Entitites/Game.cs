@@ -16,18 +16,10 @@
             var player = GetPlayer(playerNumber);
 
             player.MoveTokenPosition(position);
+            
+            SetFinalPositionIfIsSnake(position, player);
 
-            var finalSnakePosition = Board.GetFinalPositionIfSnake(position);
-            if (finalSnakePosition != 0)
-            {
-                player.SetTokenPosition(finalSnakePosition);
-            }
-
-            var finalLadderPosition = Board.GetFinalPositionIfLadder(position);
-            if (finalLadderPosition != 0)
-            {
-                player.SetTokenPosition(finalLadderPosition);
-            }
+            SetPositionIfIsLadder(position, player);
 
             return player;
         }
@@ -39,5 +31,22 @@
             return futurePosition > Board.GoalSquare;
         }
 
+        private void SetFinalPositionIfIsSnake(int position, Player player)
+        {
+            var finalSnakePosition = Board.GetFinalPositionIfSnake(position);
+            if (finalSnakePosition != 0)
+            {
+                player.SetTokenPosition(finalSnakePosition);
+            }
+        }
+
+        private void SetPositionIfIsLadder(int position, Player player)
+        {
+            var finalLadderPosition = Board.GetFinalPositionIfLadder(position);
+            if (finalLadderPosition != 0)
+            {
+                player.SetTokenPosition(finalLadderPosition);
+            }
+        }
     }
 }
