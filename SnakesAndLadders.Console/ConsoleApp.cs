@@ -36,7 +36,6 @@ namespace SnakesAndLadders
         public void StartGame()
         {
             Console.WriteLine("Hello this is the game SnakesAndLadders.");
-            Console.WriteLine("Write stop to exit the game.");
             Console.WriteLine("Set number of players:");
             var command = Console.ReadLine();
             bool isNumber = int.TryParse(command, out int numberOfPlayers);
@@ -46,23 +45,25 @@ namespace SnakesAndLadders
                 command = Console.ReadLine();
                 isNumber = int.TryParse(command, out numberOfPlayers);
             }
+
             _boardGameService.Start(numberOfPlayers);
+
             bool playerWonGame = false;
             while (command != StopCommand && !playerWonGame)
             {
                 for (int actualPlayer = 1; actualPlayer <= numberOfPlayers; actualPlayer++)
                 {
-                    Console.WriteLine($"Player {actualPlayer}, please write roll to throw the die.");
+                    Console.WriteLine($"Player {actualPlayer}, please write roll to throw the die or stop to exit the game.");
                     command = Console.ReadLine();
                     
-                    if (command.Equals(StopCommand))
+                    if (command is not null && command.Equals(StopCommand))
                     {
                         Console.WriteLine("The game is over.");
                         Console.ReadKey();
                         break;
                     }
 
-                    if (command.Equals(RollCommand))
+                    if (command is not null && command.Equals(RollCommand))
                     {
                         playerWonGame = PlayTurn(actualPlayer);
 
