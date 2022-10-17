@@ -2,7 +2,7 @@
 {
     public class Game
     {
-        public List<Player> Players { get; set; }
+        public List<Player> Players { get; set; } = new List<Player>();
 
         public Board Board { get; set; } = new Board(100);
 
