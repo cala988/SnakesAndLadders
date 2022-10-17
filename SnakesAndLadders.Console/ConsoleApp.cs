@@ -60,8 +60,7 @@ namespace SnakesAndLadders
                         var player = _boardGameService.GetPlayer(actualPlayer);
                         int initialSquareOfTurn = _boardGameService.GetTokenPositionOfPlayer(player);
                         int number = _boardGameService.RollDie();
-                        _boardGameService.MovePlayerTokenPosition(player, number);
-                        player = _boardGameService.GetPlayer(actualPlayer);
+                        player = _boardGameService.MovePlayerTokenPosition(player, number);
                         int finalSquareOfTurn = _boardGameService.GetTokenPositionOfPlayer(player);
                         Console.WriteLine($"You have rolled an {number}, you have moved from square {initialSquareOfTurn} to {finalSquareOfTurn}.");
                         playerWonGame = _boardGameService.CheckIfThePlayerWonTheGame(player);
