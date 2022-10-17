@@ -205,5 +205,21 @@ namespace SnakersAndLadders.UnitTest
             player.GetTokenPosition().Should().Be(ExpectedResult);
         }
 
+
+        [Fact]
+        public void TestTokenIsInSnakePosition()
+        {
+            const int NumberOfPlayers = 2;
+            const int SnakePosition = 16;
+            const int PlayerToMove = 1;
+            const int FinalSnakePosition = 6;
+
+            _boardGameService.Start(NumberOfPlayers);
+            var player = _boardGameService.GetPlayer(PlayerToMove);
+            player = _boardGameService.MovePlayerTokenPosition(player, SnakePosition);
+
+            player.GetTokenPosition().Should().Be(FinalSnakePosition);
+        }
+
     }
 }
