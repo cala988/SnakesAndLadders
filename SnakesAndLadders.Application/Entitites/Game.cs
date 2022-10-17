@@ -13,13 +13,13 @@
 
         public Player MovePlayerTokenPosition(int playerNumber, int position)
         {
-            var player  = GetPlayer(playerNumber);
+            var player = GetPlayer(playerNumber);
 
             player.MoveTokenPosition(position);
 
-            var finalPosition = Board.Snakes.Where(x => x.InitialPosition == position).Select(x => x.EndPosition).FirstOrDefault();
+            var finalPosition = Board.GetFinalPositionIfSnake(position);
 
-            if(finalPosition != 0)
+            if (finalPosition != 0)
             {
                 player.SetTokenPosition(finalPosition);
             }

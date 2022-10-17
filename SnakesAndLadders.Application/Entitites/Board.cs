@@ -15,6 +15,11 @@
             SetSnakes();
         }
 
+        public int GetFinalPositionIfSnake(int position)
+        {
+            return Snakes.Where(x => x.InitialPosition == position).Select(x => x.EndPosition).FirstOrDefault();
+        }
+
         private void SetSnakes()
         {
             Snakes = new List<Snake>();
