@@ -17,7 +17,14 @@ namespace SnakesAndLadders
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            InitGame();
+            try
+            {
+                StartGame();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
             return Task.CompletedTask;
         }
 
@@ -26,7 +33,7 @@ namespace SnakesAndLadders
             return Task.CompletedTask;
         }
 
-        public void InitGame()
+        public void StartGame()
         {
             Console.WriteLine("Hello this is the game SnakesAndLadders.");
             Console.WriteLine("Write stop to exit the game.");
@@ -57,22 +64,29 @@ namespace SnakesAndLadders
 
                     if (command.Equals(RollCommand))
                     {
-                        var player = _boardGameService.GetPlayer(actualPlayer);
-                        int initialSquareOfTurn = _boardGameService.GetTokenPositionOfPlayer(player);
-                        int number = _boardGameService.RollDie();
-                        player = _boardGameService.MovePlayerTokenPosition(player, number);
-                        int finalSquareOfTurn = _boardGameService.GetTokenPositionOfPlayer(player);
-                        Console.WriteLine($"You have rolled an {number}, you have moved from square {initialSquareOfTurn} to {finalSquareOfTurn}.");
-                        playerWonGame = _boardGameService.CheckIfThePlayerWonTheGame(player);
+                        playerWonGame = PlayTurn(actualPlayer);
+
                         if (playerWonGame)
                         {
-                            Console.WriteLine($"Congratulations! player {number} won the game! The game is over.");
+                            Console.WriteLine($"Congratulations! player {actualPlayer} won the game! The game is over.");
                             Console.ReadKey();
                             break;
                         }
                     }
                 }
             }
+        }
+
+        private bool PlayTurn(int actualPlayer)
+        {
+            var player = _boardGameService.GetPlayer(actualPlayer);
+            int initialSquareOfTurn = _boardGameService.GetTokenPositionOfPlayer(player);
+            int number = _boardGameService.RollDie();
+            player = _boardGameService.MovePlayerTokenPosition(player, number);
+            int finalSquareOfTurn = _boardGameService.GetTokenPositionOfPlayer(player);
+            Console.WriteLine($"You have rolled an {number}, you have moved from square {initialSquareOfTurn} to {finalSquareOfTurn}.");
+            return _boardGameService.CheckIfThePlayerWonTheGame(player);
+            
         }
     }
 }
