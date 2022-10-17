@@ -17,11 +17,16 @@
 
             player.MoveTokenPosition(position);
 
-            var finalPosition = Board.GetFinalPositionIfSnake(position);
-
-            if (finalPosition != 0)
+            var finalSnakePosition = Board.GetFinalPositionIfSnake(position);
+            if (finalSnakePosition != 0)
             {
-                player.SetTokenPosition(finalPosition);
+                player.SetTokenPosition(finalSnakePosition);
+            }
+
+            var finalLadderPosition = Board.GetFinalPositionIfLadder(position);
+            if (finalLadderPosition != 0)
+            {
+                player.SetTokenPosition(finalLadderPosition);
             }
 
             return player;
