@@ -1,6 +1,6 @@
 ﻿namespace SnakesAndLadders.Application.Entitites
 {
-    public class Square
+    public abstract class Square
     {
         public int InitialPosition { get; set; }
 

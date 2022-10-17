@@ -17,6 +17,13 @@
 
             player.MoveTokenPosition(position);
 
+            var finalPosition = Board.Snakes.Where(x => x.InitialPosition == position).Select(x => x.EndPosition).FirstOrDefault();
+
+            if(finalPosition != 0)
+            {
+                player.SetTokenPosition(finalPosition);
+            }
+
             return player;
         }
 

@@ -22,5 +22,11 @@
             Token.Position += position;
             return Token.Position;
         }
+
+        public int SetTokenPosition(int position)
+        {
+            Token.Position = position;
+            return Token.Position;
+        }
     }
 }
