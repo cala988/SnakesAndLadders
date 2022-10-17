@@ -232,6 +232,5 @@ namespace SnakersAndLadders.UnitTest
 
             player.GetTokenPosition().Should().Be(FinalLadderPosition);
         }
-
     }
 }

@@ -4,8 +4,8 @@
     {
         public Square[] Squares { get; set; }
 
-        public List<Snake> Snakes { get; set; }
-        public List<Ladder> Ladders { get; set; }
+        public ICollection<Snake> Snakes { get; set; } = new List<Snake>();
+        public ICollection<Ladder> Ladders { get; set; } = new List<Ladder>();
 
         public int GoalSquare { get; set; }
 
